@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: black ; color: white;">
+    <ul id ="a" class="language">
+        <li class ='abc' id="1">Javascript</li>
+    </ul>
+</body>
+<script>
+    function addlang(lang)
+    {
+        const li=document.createElement('li');
+
+        li.innerHTML= `${lang}`;
+
+        document.querySelector(".language").appendChild(li);
+    }
+
+    addlang('JAVA');
+    addlang('C++');
+
+    function addOptlang(lang)
+    {
+        const li= document.createElement('li');
+
+        li.appendChild(document.createTextNode(lang));
+        document.querySelector('.language').appendChild(li);
+    }
+
+    addOptlang("Rust");
+
+    //Edit
+
+    const seclang=document.querySelector("li:nth-child(2)");
+    //seclang.innerHTML="CSS";
+
+    const newl=document.createElement('li')
+    newl.textContent='CSS';
+
+    seclang.replaceWith(newl);
+
+    //Edit
+
+    const flang=document.querySelector('li:first-child');
+    flang.outerHTML="<li> Html </li>"
+
+    //remove
+
+    const lllang=document.querySelector('li:last-child');
+    lllang.remove();
+</script>
+</html>
