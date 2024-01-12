@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 2px 16px;
+}
+    </style>
+</head>
+<body style="background-color: black;">
+
+    <button id="b1">send</button>
+
+    <div class="card" hidden>
+        <img src="https://static.pexels.com/photos/63764/pexels-photo-63764.jpeg" alt="Avatar" style="width:100%">
+        <div class="container">
+          <h4 id="name" style="color: white;">John Doe</h4>
+          <p>Architect & Engineer</p>
+        </div>
+      </div>
+    
+</body>
+<script>
+    document.getElementById("b1").addEventListener('click',()=>{
+        //console.log("abc");
+        const url="https://api.github.com/users/hiteshchoudhary";
+        const xhr= new XMLHttpRequest()
+        xhr.open('GET',url);//open establishes a connection for post get put operations
+        console.log(xhr.readyState);//readyState defines the current state which can be 1,2,3,4
+        xhr.onreadystatechange= function (){//tacks the state continuously
+            console.log("abc");
+            console.log(xhr.readyState);
+            if(xhr.readyState===4)
+            {
+                //responsetext is the respose "this" has to be used to get the current response
+                //the responsetext returns string type change it into JSON type
+                const data=JSON.parse(this.responseText);
+                console.log(
+                    typeof data
+                );
+                console.log(data);
+                document.getElementById("name").innerHTML=data.name;
+                console.log( document.getElementById("name").innerHTML);
+                document.querySelector("img").src=String(data.avatar_url);
+                document.querySelector(".card").hidden=false;
+
+            }
+        }
+        xhr.send();
+    })
+    
+</script>
+</html>
